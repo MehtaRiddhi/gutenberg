@@ -3,6 +3,7 @@
  */
 import tinymce from 'tinymce';
 import { isEqual } from 'lodash';
+import classnames from 'classnames';
 
 /**
  * WordPress dependencies
@@ -76,7 +77,7 @@ export default class TinyMCE extends Component {
 	}
 
 	render() {
-		const { tagName = 'div', style, defaultValue, label } = this.props;
+		const { tagName = 'div', style, defaultValue, label, className } = this.props;
 
 		// If a default value is provided, render it into the DOM even before
 		// TinyMCE finishes initializing. This avoids a short delay by allowing
@@ -90,7 +91,7 @@ export default class TinyMCE extends Component {
 			ref: ( node ) => this.editorNode = node,
 			contentEditable: true,
 			suppressContentEditableWarning: true,
-			className: 'blocks-editable__tinymce',
+			className: classnames( className, 'blocks-editable__tinymce' ),
 			style,
 			'aria-label': label,
 		}, children );
